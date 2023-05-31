@@ -8,29 +8,19 @@
 import SwiftUI
 import RealityKit
 
-
-
 var type = 1
 var ind = 0
-struct ContentView : View {
-    @State var isShow=true
 
+struct ContentView : View {
     var arViewContainer = ARViewController()
     var body: some View {
         
         VStack{
             
             ARViewController().edgesIgnoringSafeArea(.all)
-            
-            
-            
             HStack{
                 Button(action: {type = 1}){Text("add")}
-                Button(action: {
-                    type = 2
-                    
-                }
-                ){Text("delete")}
+                Button(action: {type = 2}){Text("delete")}
                 Button(action: {type = 3}){Text("show")}
             }
 

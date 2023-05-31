@@ -7,7 +7,7 @@
 
 import ARKit
 import RealityKit
-
+import SceneKit
 var gestureStartLocation: SIMD3<Float>?
 var cubeEntity: ModelEntity?
 
@@ -58,35 +58,33 @@ class ViewController: UIViewController, ARSessionDelegate {
                 ind=(ind+1)%words.capacity
             }else if(type==2){
                 let entity = arView.entity(at: tapLocation)
-                entity?.removeFromParent()
+                if entity?.children.first != nil{
+                    entity?.removeFromParent()
+                }
             }else if(type==3){
                 let entity = arView.entity(at: tapLocation)
                 if let firstChild = entity?.children.first{
                     firstChild.isEnabled.toggle()
                 }
             }
-            
-            //arView.scene.addAnchor(resultAnchor, removeAfter: 3)
+        
             arView.scene.addAnchor(resultAnchor )
         }
     }
 
-    func sphere(radius: Float, color: UIColor) -> ModelEntity {
-        let sphere = ModelEntity(mesh: .generateSphere(radius: radius), materials: [SimpleMaterial(color: color, isMetallic: false)])
-        sphere.position.y = radius
-        return sphere
-    }
     
     func wordModel(word: word, color: UIColor)->ModelEntity{
         let word_ = ModelEntity(mesh: .generateText(word.Eng), materials: [SimpleMaterial(color: color, isMetallic: false)])
-        let wordChild = ModelEntity(mesh: .generateText(word.Cn), materials: [SimpleMaterial(color: color, isMetallic: false)])
+        let wordChild = ModelEntity(mesh: .generateText(wordType[word.t]+word.Cn), materials: [SimpleMaterial(color: color, isMetallic: false)])
         
         word_.addChild(wordChild )
+        wordChild.isEnabled=false
         wordChild.transform.translation.y-=15
         word_.scale=SIMD3(repeating: 0.01)
         word_.transform.translation.y+=0.15
         word_.generateCollisionShapes(recursive: true )
         arView.installGestures(.all, for: word_)
+
         return word_
         
     }
