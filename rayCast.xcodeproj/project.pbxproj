@@ -15,6 +15,8 @@
 		399EC8732A25AB85002262C3 /* rayCastTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399EC8722A25AB85002262C3 /* rayCastTests.swift */; };
 		399EC87D2A25AB85002262C3 /* rayCastUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399EC87C2A25AB85002262C3 /* rayCastUITests.swift */; };
 		399EC87F2A25AB85002262C3 /* rayCastUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399EC87E2A25AB85002262C3 /* rayCastUITestsLaunchTests.swift */; };
+		399EC88C2A25AEBF002262C3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399EC88B2A25AEBF002262C3 /* ViewController.swift */; };
+		399EC88E2A260AB1002262C3 /* word.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399EC88D2A260AB1002262C3 /* word.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +48,8 @@
 		399EC8782A25AB85002262C3 /* rayCastUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = rayCastUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		399EC87C2A25AB85002262C3 /* rayCastUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = rayCastUITests.swift; sourceTree = "<group>"; };
 		399EC87E2A25AB85002262C3 /* rayCastUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = rayCastUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		399EC88B2A25AEBF002262C3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		399EC88D2A260AB1002262C3 /* word.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = word.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +100,8 @@
 		399EC85E2A25AB85002262C3 /* rayCast */ = {
 			isa = PBXGroup;
 			children = (
+				399EC88D2A260AB1002262C3 /* word.swift */,
+				399EC88B2A25AEBF002262C3 /* ViewController.swift */,
 				399EC85F2A25AB85002262C3 /* AppDelegate.swift */,
 				399EC8612A25AB85002262C3 /* ContentView.swift */,
 				399EC8632A25AB85002262C3 /* Experience.rcproject */,
@@ -260,9 +266,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				399EC88C2A25AEBF002262C3 /* ViewController.swift in Sources */,
 				399EC8622A25AB85002262C3 /* ContentView.swift in Sources */,
 				399EC8602A25AB85002262C3 /* AppDelegate.swift in Sources */,
 				399EC8642A25AB85002262C3 /* Experience.rcproject in Sources */,
+				399EC88E2A260AB1002262C3 /* word.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
