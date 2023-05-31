@@ -13,6 +13,7 @@ var cubeEntity: ModelEntity?
 
 class ViewController: UIViewController, ARSessionDelegate {
 
+    var models:[Entity]=[]
     var arView:ARView{
         return self.view as! ARView
     }
@@ -32,12 +33,14 @@ class ViewController: UIViewController, ARSessionDelegate {
         //arView.renderOptions = [.disablePersonOcclusion, .disableDepthOfField, .disableMotionBlur]
         arView.automaticallyConfigureSession = false
         let configuration = ARWorldTrackingConfiguration()
-        configuration.sceneReconstruction = .mesh
+        //configuration.sceneReconstruction = .mesh
         //configuration.environmentTexturing = .automatic
         arView.session.run(configuration)
        
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
         arView.addGestureRecognizer(tapRecognizer)
+        
+    
     }
 
     override var prefersHomeIndicatorAutoHidden: Bool {
@@ -54,12 +57,17 @@ class ViewController: UIViewController, ARSessionDelegate {
         if let result = arView.raycast(from: tapLocation, allowing: .estimatedPlane, alignment: .horizontal).first {
             let resultAnchor = AnchorEntity(world: result.worldTransform)
             if(type==1){
-                resultAnchor.addChild(wordModel(word: words[ind], color: .black))
+                let entity = wordModel(word: words[ind], color: .black)
+                resultAnchor.addChild(entity)
+                models.append(entity)
                 ind=(ind+1)%words.capacity
             }else if(type==2){
                 let entity = arView.entity(at: tapLocation)
                 if entity?.children.first != nil{
                     entity?.removeFromParent()
+                    if let index = models.firstIndex(of: entity!){
+                        models.remove(at: index)
+                    }
                 }
             }else if(type==3){
                 let entity = arView.entity(at: tapLocation)
@@ -73,7 +81,7 @@ class ViewController: UIViewController, ARSessionDelegate {
     }
 
     
-    func wordModel(word: word, color: UIColor)->ModelEntity{
+    func wordModel(word: Word, color: UIColor)->ModelEntity{
         let word_ = ModelEntity(mesh: .generateText(word.Eng), materials: [SimpleMaterial(color: color, isMetallic: false)])
         let wordChild = ModelEntity(mesh: .generateText(wordType[word.t]+word.Cn), materials: [SimpleMaterial(color: color, isMetallic: false)])
         
